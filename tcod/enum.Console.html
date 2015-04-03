@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Console` enum in crate `tcod`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Console">
+
+    <title>tcod::Console - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='index.html'>tcod</a></p><script>window.sidebarCurrent = {name: 'Console', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>tcod</a>::<wbr><a class='enum' href=''>Console</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-41' href='../src/tcod/lib.rs.html#33-36'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum Console {
+    Root,
+    Offscreen(<a class='struct' href='../tcod/struct.LibtcodConsole.html' title='tcod::LibtcodConsole'>LibtcodConsole</a>),
+}</pre><h2 class='variants'>Variants</h2>
+<table><tr><td id='variant.Root'><a class='stability Unmarked' title='No stability level'></a><code>Root</code></td><td></td></tr><tr><td id='variant.Offscreen'><a class='stability Unmarked' title='No stability level'></a><code>Offscreen</code></td><td></td></tr></table><h2 id='methods'>Methods</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='enum' href='../tcod/enum.Console.html' title='tcod::Console'>Console</a></code></h3><div class='impl-items'><h4 id='method.new' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.new' class='fnname'>new</a>(width: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, height: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='enum' href='../tcod/enum.Console.html' title='tcod::Console'>Console</a></code></h4>
+<h4 id='method.init_root' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.init_root' class='fnname'>init_root</a>(width: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, height: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, title: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, fullscreen: <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='enum' href='../tcod/enum.Console.html' title='tcod::Console'>Console</a></code></h4>
+<h4 id='method.is_fullscreen' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.is_fullscreen' class='fnname'>is_fullscreen</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.set_fullscreen' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_fullscreen' class='fnname'>set_fullscreen</a>(fullscreen: <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>)</code></h4>
+<h4 id='method.disable_keyboard_repeat' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.disable_keyboard_repeat' class='fnname'>disable_keyboard_repeat</a>()</code></h4>
+<h4 id='method.is_active' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.is_active' class='fnname'>is_active</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.get_alignment' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_alignment' class='fnname'>get_alignment</a>(&amp;self) -&gt; <a class='enum' href='../tcod/enum.TextAlignment.html' title='tcod::TextAlignment'>TextAlignment</a></code></h4>
+<h4 id='method.set_alignment' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_alignment' class='fnname'>set_alignment</a>(&amp;mut self, alignment: <a class='enum' href='../tcod/enum.TextAlignment.html' title='tcod::TextAlignment'>TextAlignment</a>)</code></h4>
+<h4 id='method.blit' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.blit' class='fnname'>blit</a>(source_console: &amp;<a class='enum' href='../tcod/enum.Console.html' title='tcod::Console'>Console</a>, source_x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, source_y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, source_width: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, source_height: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, destination_console: &amp;mut <a class='enum' href='../tcod/enum.Console.html' title='tcod::Console'>Console</a>, destination_x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, destination_y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, foreground_alpha: <a href='http://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>, background_alpha: <a href='http://doc.rust-lang.org/nightly/std/primitive.f32.html'>f32</a>)</code></h4>
+<h4 id='method.set_key_color' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_key_color' class='fnname'>set_key_color</a>(&amp;mut self, color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.width' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.width' class='fnname'>width</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h4>
+<h4 id='method.height' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.height' class='fnname'>height</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h4>
+<h4 id='method.set_default_background' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_default_background' class='fnname'>set_default_background</a>(&amp;mut self, color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.set_default_foreground' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_default_foreground' class='fnname'>set_default_foreground</a>(&amp;mut self, color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.console_set_key_color' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.console_set_key_color' class='fnname'>console_set_key_color</a>(&amp;mut self, color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.get_char_background' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_char_background' class='fnname'>get_char_background</a>(&amp;self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a></code></h4>
+<h4 id='method.get_char_foreground' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_char_foreground' class='fnname'>get_char_foreground</a>(&amp;self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a></code></h4>
+<h4 id='method.get_background_flag' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_background_flag' class='fnname'>get_background_flag</a>(&amp;self) -&gt; <a class='enum' href='../tcod/enum.BackgroundFlag.html' title='tcod::BackgroundFlag'>BackgroundFlag</a></code></h4>
+<h4 id='method.set_background_flag' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_background_flag' class='fnname'>set_background_flag</a>(&amp;mut self, background_flag: <a class='enum' href='../tcod/enum.BackgroundFlag.html' title='tcod::BackgroundFlag'>BackgroundFlag</a>)</code></h4>
+<h4 id='method.get_char' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_char' class='fnname'>get_char</a>(&amp;self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.char.html'>char</a></code></h4>
+<h4 id='method.set_char' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_char' class='fnname'>set_char</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, c: <a href='http://doc.rust-lang.org/nightly/std/primitive.char.html'>char</a>)</code></h4>
+<h4 id='method.set_char_background' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_char_background' class='fnname'>set_char_background</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>, background_flag: <a class='enum' href='../tcod/enum.BackgroundFlag.html' title='tcod::BackgroundFlag'>BackgroundFlag</a>)</code></h4>
+<h4 id='method.set_char_foreground' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_char_foreground' class='fnname'>set_char_foreground</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.put_char' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.put_char' class='fnname'>put_char</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, glyph: <a href='http://doc.rust-lang.org/nightly/std/primitive.char.html'>char</a>, background_flag: <a class='enum' href='../tcod/enum.BackgroundFlag.html' title='tcod::BackgroundFlag'>BackgroundFlag</a>)</code></h4>
+<h4 id='method.put_char_ex' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.put_char_ex' class='fnname'>put_char_ex</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, glyph: <a href='http://doc.rust-lang.org/nightly/std/primitive.char.html'>char</a>, foreground: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>, background: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.clear' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.clear' class='fnname'>clear</a>(&amp;mut self)</code></h4>
+<h4 id='method.print' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.print' class='fnname'>print</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, text: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
+<h4 id='method.print_ex' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.print_ex' class='fnname'>print_ex</a>(&amp;mut self, x: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, y: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, background_flag: <a class='enum' href='../tcod/enum.BackgroundFlag.html' title='tcod::BackgroundFlag'>BackgroundFlag</a>, alignment: <a class='enum' href='../tcod/enum.TextAlignment.html' title='tcod::TextAlignment'>TextAlignment</a>, text: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
+<h4 id='method.get_fade' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_fade' class='fnname'>get_fade</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></h4>
+<h4 id='method.get_fading_color' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.get_fading_color' class='fnname'>get_fading_color</a>() -&gt; <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a></code></h4>
+<h4 id='method.set_fade' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_fade' class='fnname'>set_fade</a>(fade: <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>, fading_color: <a class='struct' href='../tcod/colors/struct.Color.html' title='tcod::colors::Color'>Color</a>)</code></h4>
+<h4 id='method.set_custom_font' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_custom_font' class='fnname'>set_custom_font</a>(font_path: &amp;<a class='struct' href='http://doc.rust-lang.org/nightly/std/path/struct.Path.html' title='std::path::Path'>Path</a>, flags: <a class='struct' href='../tcod/struct.FontFlags.html' title='tcod::FontFlags'>FontFlags</a>, nb_char_horizontal: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>, nb_char_vertical: <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>)</code></h4>
+<h4 id='method.wait_for_keypress' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.wait_for_keypress' class='fnname'>wait_for_keypress</a>(flush: <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>) -&gt; <a class='struct' href='../tcod/struct.KeyState.html' title='tcod::KeyState'>KeyState</a></code></h4>
+<h4 id='method.check_for_keypress' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.check_for_keypress' class='fnname'>check_for_keypress</a>(status: <a class='struct' href='../tcod/struct.KeyPressFlags.html' title='tcod::KeyPressFlags'>KeyPressFlags</a>) -&gt; <a class='enum' href='http://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;<a class='struct' href='../tcod/struct.KeyState.html' title='tcod::KeyState'>KeyState</a>&gt;</code></h4>
+<h4 id='method.window_closed' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.window_closed' class='fnname'>window_closed</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<h4 id='method.flush' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.flush' class='fnname'>flush</a>()</code></h4>
+<h4 id='method.set_window_title' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.set_window_title' class='fnname'>set_window_title</a>(title: &amp;<a href='http://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "tcod";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script async src="../search-index.js"></script>
+</body>
+</html>
