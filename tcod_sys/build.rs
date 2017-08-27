@@ -58,8 +58,8 @@ fn main() {
 
     let src = Path::new(&src_dir);
     let dst = Path::new(&dst_dir);
-    let sdl_lib_dir = src.join("libtcod/dependencies/SDL-1.2.15/lib").join(&target);
-    let sdl_include_dir = src.join("libtcod/dependencies/SDL-1.2.15/include").join(&target);
+    let sdl_lib_dir = src.join("libtcod/dependencies/SDL2-2.0.5/lib").join(&target);
+    let sdl_include_dir = src.join("libtcod/dependencies/SDL2-2.0.5/include").join(&target);
 
     let libz_sources = &[
         "libtcod/src/zlib/adler32.c",
@@ -87,19 +87,20 @@ fn main() {
 	    "libtcod/src/fov_c.c",
 	    "libtcod/src/fov_circular_raycasting.c",
 	    "libtcod/src/fov_diamond_raycasting.c",
-	    "libtcod/src/fov_recursive_shadowcasting.c",
 	    "libtcod/src/fov_permissive2.c",
+	    "libtcod/src/fov_recursive_shadowcasting.c",
 	    "libtcod/src/fov_restrictive.c",
 	    "libtcod/src/heightmap_c.c",
 	    "libtcod/src/image_c.c",
 	    "libtcod/src/lex_c.c",
 	    "libtcod/src/list_c.c",
 	    "libtcod/src/mersenne_c.c",
+	    "libtcod/src/namegen_c.c",
 	    "libtcod/src/noise_c.c",
 	    "libtcod/src/parser_c.c",
 	    "libtcod/src/path_c.c",
 	    "libtcod/src/sys_c.c",
-	    "libtcod/src/sys_opengl_c.c",
+	    "libtcod/src/sys_sdl2_c.c",
 	    "libtcod/src/sys_sdl_c.c",
 	    "libtcod/src/sys_sdl_img_bmp.c",
 	    "libtcod/src/sys_sdl_img_png.c",
@@ -107,7 +108,6 @@ fn main() {
 	    "libtcod/src/txtfield_c.c",
 	    "libtcod/src/wrappers.c",
 	    "libtcod/src/zip_c.c",
-	    "libtcod/src/namegen_c.c",
 	    "libtcod/src/png/lodepng.c",
     ];
 
@@ -117,6 +117,11 @@ fn main() {
         // Build the *.o files:
         {
             let mut config = gcc::Config::new();
+            for include_path in &pkg_config::find_library("sdl2").unwrap().include_paths {
+                config.include(include_path);
+            }
+            config.define("TCOD_SDL2", None);
+            config.define("NO_OPENGL", None);
             config.flag("-fno-strict-aliasing");
             config.flag("-ansi");
             build_libtcod_objects(config, libtcod_sources);
@@ -124,6 +129,8 @@ fn main() {
 
         // Build the DLL
         let mut config = gcc::Config::new();
+        config.define("TCOD_SDL2", None);
+        config.define("NO_OPENGL", None);
         config.flag("-shared");
         config.flag("-Wl,-soname,libtcod.so");
         config.flag("-o");
@@ -132,7 +139,7 @@ fn main() {
             config.flag(dst.join(c_file).with_extension("o").to_str().unwrap());
         }
         config.flag(dst.join("libz.a").to_str().unwrap());
-        config.flag("-lSDL");
+        config.flag("-lSDL2");
         config.flag("-lGL");
         config.flag("-lX11");
         config.flag("-lm");
@@ -142,7 +149,6 @@ fn main() {
         compile_config(config);
         assert!(dst.join("libtcod.so").is_file());
 
-        pkg_config::find_library("sdl").unwrap();
         pkg_config::find_library("gl").unwrap();
         pkg_config::find_library("x11").unwrap();
 
@@ -152,6 +158,11 @@ fn main() {
         // Build the *.o files
         {
             let mut config = gcc::Config::new();
+            for include_path in &pkg_config::find_library("sdl2").unwrap().include_paths {
+                config.include(include_path);
+            }
+            config.define("TCOD_SDL2", None);
+            config.define("NO_OPENGL", None);
             config.flag("-fno-strict-aliasing");
             config.flag("-ansi");
             build_libtcod_objects(config, libtcod_sources);
@@ -159,6 +170,8 @@ fn main() {
 
         // Build the DLL
         let mut config = gcc::Config::new();
+        config.define("TCOD_SDL2", None);
+        config.define("NO_OPENGL", None);
         config.flag("-shared");
         config.flag("-o");
         config.flag(dst.join("libtcod.dylib").to_str().unwrap());
@@ -167,8 +180,8 @@ fn main() {
         }
         config.flag(dst.join("libz.a").to_str().unwrap());
         config.flag(src.join("libtcod/osx/macsupport.m").to_str().unwrap());
-        config.flag("-lSDL");
-        config.flag("-lSDLmain");
+        config.flag("-lSDL2");
+        config.flag("-lSDL2main");
         config.flag("-framework");
         config.flag("OpenGL");
         config.flag("-framework");
@@ -180,14 +193,13 @@ fn main() {
         compile_config(config);
         assert!(dst.join("libtcod.dylib").is_file());
 
-        pkg_config::find_library("sdl").unwrap();
         println!("cargo:rustc-link-lib=framework=OpenGL");
         println!("cargo:rustc-link-lib=framework=Cocoa");
 
     } else if target.contains("windows-gnu") {
         assert!(sdl_lib_dir.is_dir());
         assert!(sdl_include_dir.is_dir());
-        fs::copy(&sdl_lib_dir.join("SDL.dll"), &dst.join("SDL.dll")).unwrap();
+        fs::copy(&sdl_lib_dir.join("SDL2.dll"), &dst.join("SDL2.dll")).unwrap();
 
         build_libz(libz_sources);
 
@@ -197,12 +209,16 @@ fn main() {
             config.include(sdl_include_dir.to_str().unwrap());
             config.flag("-fno-strict-aliasing");
             config.flag("-ansi");
+            config.define("TCOD_SDL2", None);
+            config.define("NO_OPENGL", None);
             config.define("LIBTCOD_EXPORTS", None);
             build_libtcod_objects(config, libtcod_sources);
         }
 
         // Build the DLL
         let mut config = gcc::Config::new();
+        config.define("TCOD_SDL2", None);
+        config.define("NO_OPENGL", None);
         config.flag("-o");
         config.flag(dst.join("libtcod.dll").to_str().unwrap());
         config.flag("-shared");
@@ -215,7 +231,7 @@ fn main() {
         config.flag("-mwindows");
         config.flag("-L");
         config.flag(sdl_lib_dir.to_str().unwrap());
-        config.flag("-lSDL.dll");
+        config.flag("-lSDL2.dll");
         config.flag("-lopengl32");
         config.flag("-static-libgcc");
         config.flag("-static-libstdc++");
@@ -223,7 +239,7 @@ fn main() {
         compile_config(config);
         assert!(dst.join("libtcod.dll").is_file());
 
-        println!("cargo:rustc-link-lib=dylib={}", "SDL");
+        println!("cargo:rustc-link-lib=dylib={}", "SDL2");
         println!("cargo:rustc-link-lib=dylib={}", "opengl32");
         println!("cargo:rustc-link-search=native={}", sdl_lib_dir.display());
         println!("cargo:rustc-link-search=native={}", dst.display());
@@ -231,12 +247,14 @@ fn main() {
     } else if target.contains("windows-msvc") {
         assert!(sdl_lib_dir.is_dir());
         assert!(sdl_include_dir.is_dir());
-        fs::copy(&sdl_lib_dir.join("SDL.dll"), &dst.join("SDL.dll")).unwrap();
-        fs::copy(&sdl_lib_dir.join("SDL.lib"), &dst.join("SDL.lib")).unwrap();
-        fs::copy(&sdl_lib_dir.join("SDLmain.lib"), &dst.join("SDLmain.lib")).unwrap();
+        fs::copy(&sdl_lib_dir.join("SDL2.dll"), &dst.join("SDL2.dll")).unwrap();
+        fs::copy(&sdl_lib_dir.join("SDL2.lib"), &dst.join("SDL2.lib")).unwrap();
+        fs::copy(&sdl_lib_dir.join("SDL2main.lib"), &dst.join("SDL2main.lib")).unwrap();
 
         // Build the DLL
         let mut config = gcc::Config::new();
+        config.define("TCOD_SDL2", None);
+        config.define("NO_OPENGL", None);
         config.flag("/DLIBTCOD_EXPORTS");
         config.flag("/DNO_OPENGL");
         config.include(sdl_include_dir.to_str().unwrap());
@@ -250,8 +268,8 @@ fn main() {
             config.flag(src.join(path).to_str().unwrap());
         }
         config.flag("User32.lib");
-        config.flag("SDL.lib");
-        config.flag("SDLmain.lib");
+        config.flag("SDL2.lib");
+        config.flag("SDL2main.lib");
         config.flag("/link");
         config.flag(&format!("/LIBPATH:{}", dst.to_str().unwrap()));
         config.flag("/DLL");
@@ -261,7 +279,7 @@ fn main() {
         assert!(dst.join("tcod.dll").is_file());
 
         println!("cargo:rustc-link-search={}", dst.display());
-        println!("cargo:rustc-link-lib=dylib=SDL");
+        println!("cargo:rustc-link-lib=dylib=SDL2");
         println!("cargo:rustc-link-lib=User32");
     }
 
