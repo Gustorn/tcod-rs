@@ -10,8 +10,9 @@
 *     * Redistributions in binary form must reproduce the above copyright
 *       notice, this list of conditions and the following disclaimer in the
 *       documentation and/or other materials provided with the distribution.
-*     * The name of Jice or Mingos may not be used to endorse or promote products
-*       derived from this software without specific prior written permission.
+*     * The name of Jice or Mingos may not be used to endorse or promote
+*       products derived from this software without specific prior written
+*       permission.
 *
 * THIS SOFTWARE IS PROVIDED BY JICE, MINGOS AND RMTEW ``AS IS'' AND ANY
 * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -24,30 +25,15 @@
 * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
-#ifndef _TCOD_TREE_HPP
-#define _TCOD_TREE_HPP
-
-#include "tree.h"
-
-class TCODLIB_API TCODTree {
-public :
-	TCODTree *next;
-	TCODTree *father;
-	TCODTree *sons;
-
-	TCODTree() : next(NULL),father(NULL),sons(NULL){}
-	void addSon(TCODTree *data) {
-		data->father=this;
-		TCODTree *lastson = sons;
-		while ( lastson && lastson->next ) lastson=lastson->next;
-		if ( lastson ) {
-			lastson->next=data;
-		} else {
-			sons=data;
-		}
-	}
-
-};
+#ifndef LIBTCOD_UTILITY_H
+#define LIBTCOD_UTILITY_H
+/******************************************
+ utility macros
+ ******************************************/
+#define MAX(a,b) (((a)>(b))?(a):(b))
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define ABS(a) ((a)<0?-(a):(a))
+#define CLAMP(a, b, x)		((x) < (a) ? (a) : ((x) > (b) ? (b) : (x)))
+#define LERP(a, b, x) ( (a) + (x) * ((b) - (a)) )
 
 #endif
