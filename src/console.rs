@@ -109,6 +109,10 @@ pub struct Offscreen {
     con: ffi::TCOD_console_t,
 }
 
+use std::marker;
+
+unsafe impl marker::Send for Offscreen {}
+
 impl Drop for Offscreen {
     fn drop(&mut self) {
         unsafe {
