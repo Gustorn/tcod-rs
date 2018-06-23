@@ -1066,7 +1066,7 @@ pub trait Console : AsNative<ffi::TCOD_console_t> {
 /// }
 ///
 /// ```
-pub fn blit<T, U>(source_console: &T,
+pub fn blit<T: ?Sized, U: ?Sized>(source_console: &T,
                   (source_x, source_y): (i32, i32),
                   (source_width, source_height): (i32, i32),
                   destination_console: &mut U,
