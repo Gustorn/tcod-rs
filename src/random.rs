@@ -25,6 +25,9 @@ pub struct Rng {
     default: bool
 }
 
+use std;
+unsafe impl std::marker::Send for Rng {}
+
 impl Rng {
     pub fn get_instance() -> Rng {
         unsafe {
