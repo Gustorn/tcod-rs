@@ -40,6 +40,8 @@ pub struct Bsp<'a> {
     bsp: &'a mut ffi::TCOD_bsp_t,
     root: bool
 }
+use std;
+unsafe impl<'a> std::marker::Send for Bsp<'a> {}
 
 impl<'a> Deref for Bsp<'a> {
     type Target = ffi::TCOD_bsp_t;
